@@ -43,51 +43,6 @@ test('[next] takes next 2 entries under vote', t => {
   t.end()
 })
 
-test('[vote] creates a tally for the voted entry', t => {
-  const state = Map({
-    vote: Map({
-      pair: List.of('Bacon', 'Bits')
-    }),
-    entries: List.of()
-  })
-  const nextState = vote(state, 'Bacon')
-  expect(nextState).to.equal(Map({
-    vote: Map({
-      pair: List.of('Bacon', 'Bits'),
-      tally: Map({
-        'Bacon': 1
-      })
-    }),
-    entries: List.of()
-  }))
-  t.end()
-})
-
-test('[vote] adds to existing for the voted entry', t => {
-  const state = Map({
-    vote: Map({
-      pair: List.of('Bacon', 'Bits'),
-      tally: Map({
-        'Bacon': 3,
-        'Bits': 2
-      })
-    }),
-    entries: List.of()
-  })
-  const nextState = vote(state, 'Bacon')
-  expect(nextState).to.equal(Map({
-    vote: Map({
-      pair: List.of('Bacon', 'Bits'),
-      tally: Map({
-        'Bacon': 4,
-        'Bits': 2
-      })
-    }),
-    entries: List.of()
-  }))
-  t.end()
-})
-
 test('[next] puts winner of current vote back to entries', t => {
   const state = Map({
     vote: Map({
@@ -144,6 +99,51 @@ test('[next] marks winner when just one entry left', t => {
   const nextState = next(state)
   expect(nextState).to.equal(Map({
     winner: 'Bacon'
+  }))
+  t.end()
+})
+
+test('[vote] creates a tally for the voted entry', t => {
+  const state = Map({
+    vote: Map({
+      pair: List.of('Bacon', 'Bits')
+    }),
+    entries: List.of()
+  })
+  const nextState = vote(state, 'Bacon')
+  expect(nextState).to.equal(Map({
+    vote: Map({
+      pair: List.of('Bacon', 'Bits'),
+      tally: Map({
+        'Bacon': 1
+      })
+    }),
+    entries: List.of()
+  }))
+  t.end()
+})
+
+test('[vote] adds to existing for the voted entry', t => {
+  const state = Map({
+    vote: Map({
+      pair: List.of('Bacon', 'Bits'),
+      tally: Map({
+        'Bacon': 3,
+        'Bits': 2
+      })
+    }),
+    entries: List.of()
+  })
+  const nextState = vote(state, 'Bacon')
+  expect(nextState).to.equal(Map({
+    vote: Map({
+      pair: List.of('Bacon', 'Bits'),
+      tally: Map({
+        'Bacon': 4,
+        'Bits': 2
+      })
+    }),
+    entries: List.of()
   }))
   t.end()
 })
