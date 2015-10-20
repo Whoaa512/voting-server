@@ -105,45 +105,33 @@ test('[next] marks winner when just one entry left', t => {
 
 test('[vote] creates a tally for the voted entry', t => {
   const state = Map({
-    vote: Map({
-      pair: List.of('Bacon', 'Bits')
-    }),
-    entries: List.of()
+    pair: List.of('Bacon', 'Bits')
   })
   const nextState = vote(state, 'Bacon')
   expect(nextState).to.equal(Map({
-    vote: Map({
-      pair: List.of('Bacon', 'Bits'),
-      tally: Map({
-        'Bacon': 1
-      })
-    }),
-    entries: List.of()
+    pair: List.of('Bacon', 'Bits'),
+    tally: Map({
+      'Bacon': 1
+    })
   }))
   t.end()
 })
 
 test('[vote] adds to existing for the voted entry', t => {
   const state = Map({
-    vote: Map({
-      pair: List.of('Bacon', 'Bits'),
-      tally: Map({
-        'Bacon': 3,
-        'Bits': 2
-      })
-    }),
-    entries: List.of()
+    pair: List.of('Bacon', 'Bits'),
+    tally: Map({
+      'Bacon': 3,
+      'Bits': 2
+    })
   })
   const nextState = vote(state, 'Bacon')
   expect(nextState).to.equal(Map({
-    vote: Map({
-      pair: List.of('Bacon', 'Bits'),
-      tally: Map({
-        'Bacon': 4,
-        'Bits': 2
-      })
-    }),
-    entries: List.of()
+    pair: List.of('Bacon', 'Bits'),
+    tally: Map({
+      'Bacon': 4,
+      'Bits': 2
+    })
   }))
   t.end()
 })
