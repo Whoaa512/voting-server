@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "babel-node index.js",
     "test": "ava",
     "test:watch": "nodemon test/* --exec ava"
   },
