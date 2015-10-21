@@ -17,6 +17,7 @@
     "nodemon": "^1.7.3"
   },
   "dependencies": {
-    "immutable": "^3.7.5"
+    "immutable": "^3.7.5",
+    "redux": "^3.0.3"
   }
 }
