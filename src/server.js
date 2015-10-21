@@ -15,6 +15,12 @@ export function startServer (store) {
 
   io.on('connection', (socket) => {
     socket.emit('state', store.getState().toJS())
+    /**
+     * There are some obvious security considerations here. We're allowing any
+     * connected Socket.io client to dispatch any action into the Redux store.
+     * In most real-world cases, there should be some kind of firewall here
+     */
+    socket.on('action', store.dispatch.bind(store))
   })
 
 }
